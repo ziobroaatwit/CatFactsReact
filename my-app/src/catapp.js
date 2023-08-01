@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import * as React from 'react'
 import axios from 'axios';
+import AppBar from '@mui/material/AppBar';
+import { Toolbar, Typography } from '@mui/material';
 
 const CatFacts = () => {
     const [facts, setFacts] = useState([]);
@@ -9,7 +12,7 @@ const CatFacts = () => {
 
     const fetchFacts = () => {
         axios
-        .get("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
+        .get("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=10")
             .then((res)=>{
                 console.log(res);
                 setFacts(res.data);
@@ -21,7 +24,13 @@ const CatFacts = () => {
 
   return (
     <div>
-      <h1>Cat Facts</h1>
+      <Toolbar>
+      <AppBar>
+      <Typography variant="h6" component="div" sx={{ flexGrow: 2 }}>
+      Cat Facts - Refresh for new facts and pics.
+      </Typography>
+      </AppBar>
+      </Toolbar>
       <div className='item-container'>
         {facts.map((data)=>(
             <div className='card' key={data._id}>
