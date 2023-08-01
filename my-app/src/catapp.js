@@ -12,10 +12,10 @@ const CatFacts = () => {
 
     const fetchFacts = () => {
         axios
-        .get("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=10")
+        .get("https://meowfacts.herokuapp.com/?count=10")
             .then((res)=>{
                 console.log(res);
-                setFacts(res.data);
+                setFacts(res.data.data);
         })
         .catch((err)=>{
             console.log(err);
@@ -32,12 +32,13 @@ const CatFacts = () => {
       </AppBar>
       </Toolbar>
       <div className='item-container'>
-        {facts.map((data)=>(
-            <div className='card' key={data._id}>
+        {
+          facts.map((data)=>(
+            <div className='card' key={data}>
               <CatPics />
             {
               <h3>
-                  {data.text}
+                  {data}
               </h3>
             }
             </div>
@@ -70,7 +71,7 @@ const fetchImgs =  () =>
     <div>
       <div className='item-container'>
         {pics.map((data)=>(
-            <div className='card' key={data.sub_id}>
+            <div className='card' key={data.id}>
             <img alt="Cat pic" src={data.url}/>&nbsp;
             </div>
         ))}
