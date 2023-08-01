@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
-import * as React from 'react'
+import * as React from 'react';
 import axios from 'axios';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
 import { Toolbar, Typography } from '@mui/material';
+import catLogo from './catLogo.png';
 
 const CatFacts = () => {
     const [facts, setFacts] = useState([]);
@@ -24,13 +27,17 @@ const CatFacts = () => {
 
   return (
     <div>
+      <Box  sx={{ flexGrow: 1 }}>
       <Toolbar>
       <AppBar>
+      <Avatar alt="cat" src={catLogo}>
+      </Avatar>
       <Typography variant="h6" component="div" sx={{ flexGrow: 2 }}>
       Cat Facts - Refresh for new facts and pics.
       </Typography>
       </AppBar>
       </Toolbar>
+      </Box>
       <div className='item-container'>
         {
           facts.map((data)=>(
